@@ -152,3 +152,60 @@ public class ProductSearchTest {
     }
 }
 ------------------------------------------------------------------------
+
+<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>5.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.22.0</version>
+		</dependency>
+---------------------------------------------------------------------------------
+
+package Testing.test;
+
+
+import static org.junit.Assert.assertEquals;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class ProductSearchTest {
+	
+	public static void main(String[] args) {
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+
+		
+		driver.get("https://magento.softwaretestingboard.com");
+			
+		WebElement searchBox = driver.findElement(By.id("search"));
+			
+		searchBox.sendKeys("Shirt");
+		searchBox.submit();
+			
+		String title = "Search results for : Shirts ";
+		assertEquals(title, driver.getTitle());
+
+
+		if(driver != null) 
+			driver.quit();
+	}
+ 
+}
