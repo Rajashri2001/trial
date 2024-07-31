@@ -1,0 +1,154 @@
+Here’s a quick summary:
+
+git init
+git remote add origin <remote-repository-URL>
+git add .
+git commit -m "Your commit message"
+git push -u origin main
+
+git branch <branch-name>
+git checkout <branch-name>
+git checkout -b <branch-name>
+git checkout main
+git merge <branch-name>
+git checkout -b feature-branch
+git add .
+git commit -m "Added new feature"
+git checkout main
+git merge feature-branch
+git branch -d feature-branch
+
+-----------------------------------------------------------------
+Docker:
+dockerfile:
+FROM openjdk:8
+WORKDIR /app
+COPY HelloWorld.java .
+RUN javac HelloWorld.java
+CMD ["java", "HelloWorld"]
+
+
+docker build -t hello-img .
+docker run -it hello-img
+
+---------------------------------------------------
+#!/bin/bash
+
+# a) Find the number of logged in users
+logged_in_users=$(who | wc -l)
+echo "Number of logged in users: $logged_in_users"
+
+# b) Write the first 5 lines of the dmesg command to file log.txt
+dmesg | head -n 5 > log.txt
+
+# c) Create file my.txt and change its permission so that only the user is allowed to read and write
+touch my.txt
+chmod 600 my.txt
+
+# d) Create a new user 'cdac'
+sudo useradd cdac
+
+# e) Create a new user 'cdac1' and add this user to the 'cdac' group
+sudo useradd cdac1
+sudo usermod -aG cdac cdac1
+
+echo "Tasks completed."
+
+
+
+To run:
+chmod +x task_script.sh
+./task_script.sh
+-------------------------------------------------------
+# a) Find the number of logged in users
+who | wc -l
+
+# b) Write the first 5 lines of the dmesg command to file log.txt
+dmesg | head -n 5 > log.txt
+
+# c) Create file my.txt and change its permission so that only the user is allowed to read and write
+touch my.txt
+chmod 600 my.txt
+
+# d) Create a new user cdac
+sudo useradd cdac
+
+# e) Create a new user cdac1 and add this user to the cdac group
+sudo useradd cdac1
+sudo usermod -aG cdac cdac1
+-----------------------------------------------------------------------------
+
+#!/bin/bash
+
+# Prompt the user for input
+echo "Please enter the file or directory path:"
+read input_path
+
+# Check if the input path is a directory
+if [ -d "$input_path" ]; then
+    echo "$input_path is a directory."
+else
+    echo "$input_path is not a directory."
+fi
+----------------------------------------------------------------------
+
+<!-- Selenium Java Dependency -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+        <!-- JUnit Dependency -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+---------------------------------------------------------------
+
+package com.example;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import static org.junit.Assert.assertTrue;
+
+public class ProductSearchTest {
+    private WebDriver driver;
+
+    @Before
+    public void setUp() {
+        // Set the path to the chromedriver executable
+        System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
+        driver = new ChromeDriver();
+    }
+
+    @Test
+    public void testProductSearch() {
+        // i) Open https://magento.softwaretestingboard.com/
+        driver.get("https://magento.softwaretestingboard.com/");
+
+        // ii) Search "Shirt" and click search
+        WebElement searchBox = driver.findElement(By.id("search"));
+        searchBox.sendKeys("Shirt");
+        searchBox.submit();
+
+        // iii) Verify title of the page
+        String title = driver.getTitle();
+        assertTrue(title.contains("Search results for: 'Shirt'"));
+    }
+
+    @After
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}
+------------------------------------------------------------------------
